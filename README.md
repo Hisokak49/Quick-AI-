@@ -8,32 +8,84 @@ The project explores how AI-powered features can be exposed through a modern web
 
 ## Tech Stack
 
-- **Frontend:** React / JavaScript
-- **Backend:** Node.js / Express
+- **Frontend:** React 19, Vite, JavaScript
+- **Backend:** Node.js, Express 5
 - **Database:** PostgreSQL
+- **Authentication:** Clerk
+- **AI integrations:** OpenAI and Groq SDKs
+- **Media:** Cloudinary
 - **Architecture:** REST API + client application
 - **Deployment:** Vercel frontend deployment
 
-## Repository
+## Repository layout
 
-The source code in this repository is organized as a full-stack web application. The deployed project is available at:
-
-**https://client-seven-dusky-39.vercel.app**
+```text
+Quick-AI-/
+├── client/     # React + Vite frontend
+├── server/     # Express API and integrations
+└── README.md
+```
 
 ## Getting Started
 
-Clone the repository and inspect the frontend/backend package manifests before installing dependencies:
+### Prerequisites
+
+- Node.js 18+ (Node.js 20+ recommended)
+- A PostgreSQL database
+- Clerk credentials for authentication
+- API credentials for the AI/media services used by the features you enable
+
+### 1. Install frontend dependencies
 
 ```bash
-git clone https://github.com/Hisokak49/Quick-AI-.git
-cd Quick-AI-
+cd client
+npm install
 ```
 
-Then install dependencies in the application directories using the package manager and scripts defined by the repository's `package.json` files.
+Start the frontend in development mode:
+
+```bash
+npm run dev
+```
+
+The client package also provides `npm run lint`, `npm run build`, and `npm run preview` for validation and production-preview workflows.
+
+### 2. Install backend dependencies
+
+From the repository root:
+
+```bash
+cd server
+npm install
+```
+
+Start the API with automatic restart during development:
+
+```bash
+npm run server
+```
+
+For a production-style start:
+
+```bash
+npm start
+```
+
+The Express server listens on `PORT` when provided, otherwise it defaults to `3000`.
 
 ### Environment variables
 
-Keep API keys, database credentials, authentication secrets, and other private configuration in environment variables. Do not commit `.env` files or production credentials to Git.
+The backend loads configuration through `dotenv`. Keep API keys, database credentials, authentication secrets, and other private configuration in environment variables. Do not commit `.env` files or production credentials to Git.
+
+Because the exact credentials and feature configuration depend on the enabled integrations, check the imports under `server/configs/` and the route implementations under `server/routes/` before creating your local environment file.
+
+## Deployment
+
+The frontend has been deployed at:
+
+**https://client-seven-dusky-39.vercel.app**
+
+For a complete deployment, configure the same authentication, database, AI, and Cloudinary environment values in the hosting provider rather than committing them to the repository.
 
 ## What I Learned
 
